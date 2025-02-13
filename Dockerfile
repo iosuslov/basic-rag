@@ -36,8 +36,8 @@ RUN chown -R appuser:appuser /app
 # Switch to non-root user
 USER appuser
 
-# Install dependencies
-RUN poetry install
+# Install only production dependencies
+RUN poetry install --only main
 
 # Copy the rest of the application
 COPY --chown=appuser:appuser . .
