@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "basic-web-service"
+version = "0.1.0"
+description = "A basic web service using FastAPI"
+authors = ["Your Name <your.email@example.com>"]
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+fastapi = "^0.109.0"
+uvicorn = "^0.27.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+black = "^24.1.0"
+flake8 = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
