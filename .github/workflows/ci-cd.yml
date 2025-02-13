@@ -31,11 +31,8 @@ jobs:
     - name: Lint with Ruff
       run: poetry run ruff check .
 
-    - name: cat pyproject.toml
-      run: cat pyproject.toml
-
     - name: Type check with MyPy
-      run: poetry run mypy app --allow-untyped-decorators
+      run: poetry run mypy app
 
   test:
     runs-on: ubuntu-latest
