@@ -1,8 +1,6 @@
 """Application configuration management."""
 
 from functools import lru_cache
-
-from pydantic import ConfigDict
 from pydantic_settings import BaseSettings
 
 
@@ -13,7 +11,9 @@ class Settings(BaseSettings):
     DEBUG: bool = False
     API_V1_STR: str = "/api/v1"
 
-    model_config = ConfigDict(case_sensitive=True, env_file=".env")
+    class Config:
+        case_sensitive = True
+        env_file = ".env"
 
 
 @lru_cache()
