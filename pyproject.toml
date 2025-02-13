@@ -3,7 +3,7 @@ name = "basic-web-service"
 version = "0.1.0"
 description = "A basic web service using FastAPI"
 authors = ["Your Name <your.email@example.com>"]
-packages = [{include = "app"}]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -16,8 +16,7 @@ loguru = "^0.7.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"
-black = "^24.1.0"
-flake8 = "^7.0.0"
+ruff = "^0.2.1"
 mypy = "^1.8.0"
 pytest-cov = "^4.1.0"
 pre-commit = "^3.6.0"
@@ -26,3 +25,8 @@ httpx = "^0.26.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+target-version = "py312"
