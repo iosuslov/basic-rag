@@ -1,12 +1,13 @@
 """Main application module."""
 
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
-from app.core.config import get_settings
 from app.api.api_v1.api import api_router
+from app.core.config import get_settings
 
 settings = get_settings()
 
