@@ -1,5 +1,6 @@
 """Main application module."""
 
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
@@ -9,11 +10,23 @@ from app.api.api_v1.api import api_router
 
 settings = get_settings()
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan events handler."""
+    # Startup
+    logger.info("Starting up application...")
+    yield
+    # Shutdown
+    logger.info("Shutting down application...")
+
+
 app = FastAPI(
     title=settings.APP_NAME,
     description="A basic web service built with FastAPI",
     version="0.1.0",
     debug=settings.DEBUG,
+    lifespan=lifespan,
 )
 
 # Configure CORS
@@ -38,15 +51,3 @@ async def root():
         "redoc": "/redoc",
         "api": settings.API_V1_STR,
     }
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Initialize application services."""
-    logger.info("Starting up application...")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Cleanup application services."""
-    logger.info("Shutting down application...")
