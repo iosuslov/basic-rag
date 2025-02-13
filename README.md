@@ -1,46 +1,85 @@
 # Basic Web Service
 
-A basic web service built with FastAPI, Poetry, and Docker.
+A basic web service built with FastAPI, following modern Python best practices.
 
-## Prerequisites
+## Features
 
-- Python 3.8 or higher
+- FastAPI-based REST API
+- Configuration management with pydantic
+- Logging with loguru
+- Testing with pytest
+- Code quality tools (black, flake8, mypy)
+- CI/CD ready
+- Pre-commit hooks
+
+## Requirements
+
+- Python 3.8+
 - Poetry
-- Docker
 
-## Development Setup
+## Installation
 
-1. Install dependencies:
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd basic-web-service
+```
+
+2. Install dependencies:
 ```bash
 poetry install
 ```
 
-2. Run the development server:
+3. Set up pre-commit hooks:
+```bash
+poetry run pre-commit install
+```
+
+4. Create `.env` file:
+```bash
+cp .env.example .env
+```
+
+## Development
+
+1. Run the development server:
 ```bash
 poetry run uvicorn app.main:app --reload
 ```
 
-The API will be available at http://localhost:8000
+2. Visit the API documentation:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
 
-## Docker Setup
+## Testing
 
-1. Build the Docker image:
+Run tests:
 ```bash
-docker build -t basic-web-service .
+poetry run pytest
 ```
 
-2. Run the container:
+Run tests with coverage:
 ```bash
-docker run -p 8000:8000 basic-web-service
+poetry run pytest --cov=app tests/
 ```
 
-## API Documentation
+## Project Structure
 
-Once the service is running, you can access:
-- API documentation: http://localhost:8000/docs
-- Alternative documentation: http://localhost:8000/redoc
+```
+.
+├── app/
+│   ├── api/             # API routes
+│   ├── core/            # Core functionality
+│   ├── schemas/         # Pydantic models
+│   └── services/        # Business logic
+├── tests/               # Test files
+├── docs/                # Documentation
+├── .env                 # Environment variables
+├── .pre-commit-config.yaml
+├── pyproject.toml       # Project dependencies
+└── README.md
+```
 
-## Endpoints
+## License
 
-- GET `/`: Welcome message
-- GET `/health`: Health check endpoint
+This project is licensed under the terms of the MIT license.
