@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
-from app.api.api_v1.api import api_router
+from app.api.v1.router import api_router
 from app.core.config import get_settings
 
 settings = get_settings()
@@ -47,7 +47,7 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 async def root():
     """Root endpoint."""
     return {
-        "message": "Welcome to the Basic Web Service",
+        "message": "Welcome to the Basic RAG Service",
         "docs": "/docs",
         "redoc": "/redoc",
         "api": settings.API_V1_STR,

@@ -1,16 +1,17 @@
-# Basic Web Service
+# Basic RAG Service
 
-A basic web service built with FastAPI, following modern Python best practices.
+A Retrieval-Augmented Generation (RAG) web service built with FastAPI, following modern Python best practices.
 
 ## Features
 
-- FastAPI-based REST API
+- FastAPI-based REST API for RAG operations
 - Configuration management with pydantic
 - Logging with loguru
 - Testing with pytest
 - Code quality tools (black, flake8, mypy)
 - CI/CD ready
 - Pre-commit hooks
+- Docker support
 
 ## Requirements
 
@@ -22,7 +23,7 @@ A basic web service built with FastAPI, following modern Python best practices.
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd basic-web-service
+cd basic-rag
 ```
 
 2. Install dependencies:
