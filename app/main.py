@@ -1,5 +1,6 @@
 """Main application module."""
 
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -8,12 +9,13 @@ from loguru import logger
 
 from app.api.v1.router import api_router
 from app.core.config import get_settings
+from app.schemas import RootResponse
 
 settings = get_settings()
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     """Lifespan events handler."""
     # Startup
     logger.info("Starting up application...")
@@ -43,12 +45,11 @@ app.add_middleware(
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
-@app.get("/")
-async def root():
+@app.get(
+    "/",
+    response_model=RootResponse,
+    response_description="Root endpoint response",
+)
+async def root() -> RootResponse:
     """Root endpoint."""
-    return {
-        "message": "Welcome to the Basic RAG Service",
-        "docs": "/docs",
-        "redoc": "/redoc",
-        "api": settings.API_V1_STR,
-    }
+    return RootResponse(message="Welcome to the Basic RAG Service", docs="/docs")
