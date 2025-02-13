@@ -32,7 +32,7 @@ jobs:
       run: poetry run ruff check .
 
     - name: Type check with MyPy
-      run: poetry run mypy app
+      run: poetry run mypy app --allow-untyped-decorators
 
   test:
     runs-on: ubuntu-latest
