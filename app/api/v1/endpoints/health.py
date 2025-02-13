@@ -1,11 +1,18 @@
 """Health check endpoint for monitoring application status."""
 
+
 from fastapi import APIRouter
+
+from app.schemas import HealthResponse
 
 router = APIRouter()
 
 
-@router.get("/health")
-async def health_check():
+@router.get(
+    "/health",
+    response_model=HealthResponse,
+    response_description="Health check response",
+)
+async def health_check() -> HealthResponse:
     """Health check endpoint."""
-    return {"status": "healthy"}
+    return HealthResponse(status="healthy")
