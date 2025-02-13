@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "basic-web-service"
+name = "basic-rag"
 version = "0.1.0"
-description = "A basic web service using FastAPI"
+description = "A Retrieval-Augmented Generation (RAG) web service using FastAPI"
 authors = ["Your Name <your.email@example.com>"]
 package-mode = false
 
