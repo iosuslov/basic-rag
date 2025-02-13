@@ -36,7 +36,7 @@ def run_linting() -> int:
     commands = [
         ["ruff", "format", "--check", "."],
         ["ruff", "check", "."],
-        ["mypy", ".", "--ignore-missing-imports"],
+        ["mypy", "app"],
     ]
 
     exit_code = 0
